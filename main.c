@@ -4,7 +4,8 @@
 #include <string.h>
 
 /*
-	TODO: add timestamp at each entry
+	CRUD Exercise: This program is a C and SQLite exercise. 
+	It's run select, insert, delete and update operations.
 */
 
 
