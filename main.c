@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
 #include <sqlite3.h>
 #include <string.h>
@@ -7,7 +8,6 @@
 	CRUD Exercise: This program is a C and SQLite exercise. 
 	It's run select, insert, delete and update operations.
 */
-
 
 static int show_results(
 			void *not_used, // sqlite standard param, empty pointer not used here.
@@ -41,7 +41,7 @@ static int count_affected_rows(sqlite3 *db, char *sql_count){
 	}
 }
 
-void clear (void){
+static void clear (void){
     /*
 	 * clear: remove characteres eventually in stdin    
 	 */
@@ -141,7 +141,7 @@ int main (void)
 				printf("-----------------  ALL CUSTOMERS  -----------------\n");
 				printf("---------------------------------------------------\n\n");
 
-				strcpy(sql, "SELECT * FROM customers;");
+				strcpy(sql, "SELECT id, name, email, datetime(last_modified, 'localtime') AS \"last modified\" FROM customers;");
 
 				is_succedded = 0; //reset var
 				is_succedded = sqlite3_exec(db, sql, show_results, 0, &error_messages);
